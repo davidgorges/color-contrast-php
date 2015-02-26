@@ -1,9 +1,9 @@
 {
     "name": "davidgorges/color-contrast",
-    "description": "",
+    "description": "A tiny library to find color combinations with a contrast threshold",
     "type": "library",
-    "keywords": [],
-    "homepage": "http://www.da.org/",
+    "keywords": ["color", "contrast", "library", "WCAG 2.0", "usability"],
+    "homepage": "http://www.davidgorges.de",
     "license": "MIT",
     "require": {
         "php": ">=5.3.3",
