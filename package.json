@@ -1,0 +1,16 @@
+{
+    "name": "davidgorgescolorable",
+    "version": "0.0.1",
+    "description": "Another fancy PHP library",
+    "dependencies": {},
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "grunt-phpunit": "~0.3.0",
+        "grunt-phplint": "0.0.5",
+        "grunt-phpcs": "~0.2.0",
+        "grunt-contrib-watch": "~0.4.0"
+    },
+    "engines": {
+        "node": ">=0.8.0"
+    }
+}

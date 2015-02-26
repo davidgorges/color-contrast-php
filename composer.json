@@ -1,0 +1,21 @@
+{
+    "name": "davidgorges/color-contrast",
+    "description": "",
+    "type": "library",
+    "keywords": [],
+    "homepage": "http://www.da.org/",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.3.3",
+        "mischiefcollective/colorjizz": "dev-master"
+    },
+    "require-dev": {
+        "instaclick/php-code-sniffer": "dev-master",
+        "phpunit/PHPUnit": "3.7.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "ColorContrast\\": "src/"
+        }
+    }
+}
