@@ -4,21 +4,32 @@ Small library to find valid color combinations for a given contrast threshold. T
 ## Install
 
 Using composer:
-``bash
-composer require davidgorges/color-contrast
-``
+````bash
+    composer require davidgorges/color-contrast
+````
 
 ## Usage
-``bash
-use ColorContrast\ColorContrast;
-use ColorContrast\ColorContrast;
+````php
+    use ColorContrast\ColorContrast;
 
-...
+    /* ... */
+    
+    $contrast = new ColorContrast();
+    $contrast->addColors(0xff0000, 0x002200, 0x0022ff, 0xffffff);
+    $combinations = $contrast->getCombinations(ColorContrast::MIN_CONTRAST_AAA);
+    foreach ($combinations as $combination) {
+        printf("#%s on the Background color #%s has a contrast value of %f \n", $combination->getForeground(), $combination->getBackground(), $combination->getContrast());
+    }
+````
 
-$contrast = new ColorContrast();
-$contrast->addColors(0xff0000, 0x002200, 0x0022ff);
-$combinations = $contrast->getCombinations(ColorContrast::MIN_CONTRAST_AAA);
-``
+this would ouput:
+````
+    #FFFFFF on the Background color #002200 has a contrast value of 17.949476
+    #FFFFFF on the Background color #0022FF has a contrast value of 8.033817
+    #002200 on the Background color #FFFFFF has a contrast value of 17.949476
+    #0022FF on the Background color #FFFFFF has a contrast value of 8.033817
+````
+
 
 ## Thanks
 
