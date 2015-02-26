@@ -10,7 +10,7 @@ matrix:
     allow_failures:
         - php: 7.0
 
-script: phpunit --c tests/phpunit.xml
+script: vendor/bin/phpunit --configuration tests/phpunit.xml
 
 notifications:
   recipients:
