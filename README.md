@@ -22,7 +22,7 @@ Using composer:
     }
 ````
 
-this would ouput:
+this would output:
 ````
     #FFFFFF on the Background color #002200 has a contrast value of 17.949476
     #FFFFFF on the Background color #0022FF has a contrast value of 8.033817
