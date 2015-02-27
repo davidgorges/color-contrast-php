@@ -7,12 +7,15 @@ use ColorContrast\ContrastAlgorithm\LuminosityContrast;
 use MischiefCollective\ColorJizz\ColorJizz;
 use MischiefCollective\ColorJizz\Exceptions\InvalidArgumentException;
 use MischiefCollective\ColorJizz\Formats\Hex;
+use MischiefCollective\ColorJizz\Formats\RGB;
 
 /**
  * The ColorContrast class
  */
 class ColorContrast
 {
+    const LIGHT = 'light';
+    const DARK = 'dark';
     /**
      * @var ColorJizz[] $colors
      */
@@ -136,5 +139,36 @@ class ColorContrast
             throw new InvalidColorException('Could not parse color. Currently supported formats are 0x000000, #ff0000 and ff0000', 0, $e);
         }
         throw new InvalidColorException(sprintf('Could not detect color %s', $color));
+    }
+
+    /**
+     * Tries to detect what font-color you should use as complimentary color.
+     * e.g. complimentaryTheme('#ffffff') would return ColorContrast::DARK
+     * @param $color
+     *
+     * @return string ColorContrast::LIGHT or ColorContrast::DARK
+     */
+    public function complimentaryTheme($color)
+    {
+        $parsedColor = $this->parseColor($color);
+        $yiq = $this->calculateYIQValue($parsedColor->toRGB());
+        if ($yiq > 128) {
+            return self::DARK;
+        } else {
+            return self::LIGHT;
+        }
+    }
+
+    /**
+     * calculates the YIQ value for a given color.
+     *
+     * @param RGB $color
+     *
+     * @return float 0-255
+     */
+    private function calculateYIQValue(RGB $color)
+    {
+        $yiq = (($color->getRed() * 299) + ($color->getGreen() * 587) + ($color->getBlue() * 114)) / 1000;
+        return $yiq;
     }
 }

@@ -1,6 +1,8 @@
 # ColorContrast
 Small library to find valid color combinations for a given contrast threshold. The contrast calculation algorithm is based on the WCAG 2.0.
 
+[![Build Status](https://travis-ci.org/davidgorges/color-contrast-php.svg?branch=master)](https://travis-ci.org/davidgorges/color-contrast-php)
+
 ## Install
 
 Using composer:
@@ -30,7 +32,20 @@ this would output:
     #0022FF on the Background color #FFFFFF has a contrast value of 8.033817
 ````
 
+### Dark or Light Complimentary Color
 
+````
+    $contrast = new ColorContrast();
+    $complimentary = $contrast->complimentaryTheme('#ffffff'); // returns ColorContrast::DARK to indicate you should use a dark color on this background
+    
+    if($complimentary == ColorContrast::LIGHT) 
+    {
+        // Use a light font
+    } elseif($complimentary == ColorContrast::DARK) 
+    {
+        // use a dark font
+    }
+````
 ## Thanks
 
 * [Calculating Color Contrast with PHP](http://www.splitbrain.org/blog/2008-09/18-calculating_color_contrast_with_php) by Andreas Gohr
