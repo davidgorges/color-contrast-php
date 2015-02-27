@@ -81,7 +81,7 @@ class ColorContrast
      */
     public function getCombinations($minContrast = 0.0)
     {
-        $combinations = [];
+        $combinations = array();
         foreach ($this->colors as $backgroundColor) {
             foreach ($this->colors as $foregroundColor) {
                 if ($backgroundColor == $foregroundColor) {
