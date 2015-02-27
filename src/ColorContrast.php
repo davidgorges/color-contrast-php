@@ -16,7 +16,7 @@ class ColorContrast
     /**
      * @var ColorJizz[] $colors
      */
-    private $colors = [];
+    private $colors = array();
 
     /**
      * @var ContrastAlgorithmInterface $algorithm
