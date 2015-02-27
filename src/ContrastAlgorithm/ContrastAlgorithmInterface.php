@@ -9,5 +9,11 @@ use MischiefCollective\ColorJizz\ColorJizz;
  */
 interface ContrastAlgorithmInterface
 {
+    /**
+     * @param ColorJizz $foreground
+     * @param ColorJizz $background
+     *
+     * @return mixed
+     */
     public function calculate(ColorJizz $foreground, ColorJizz $background);
 }
