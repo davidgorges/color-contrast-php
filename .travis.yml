@@ -10,7 +10,11 @@ matrix:
     allow_failures:
         - php: 7.0
 
-script: vendor/bin/phpunit --configuration tests/phpunit.xml
+before_script:
+    - composer install --prefer-source
+
+script:
+    - phpunit --configuration tests/phpunit.xml
 
 notifications:
   recipients:
