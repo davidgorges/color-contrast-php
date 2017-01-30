@@ -6,9 +6,17 @@ Small library to find valid color combinations for a given contrast threshold. T
 ## Install
 
 Using composer:
-````bash
-    composer require davidgorges/color-contrast
-````
+```bash
+composer require davidgorges/color-contrast
+```
+
+**Note** that this package depends on development branches of other projects, so your [minimum stability][1]
+must be `dev` in `composer.json` otherwise you'll get a dependency resolution conflict.
+
+```json
+"minimum-stability": "dev",
+"prefer-stable" : true
+```
 
 ## Usage
 ````php
@@ -73,3 +81,5 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+[1]:https://getcomposer.org/doc/04-schema.md#minimum-stability
