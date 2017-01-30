@@ -7,7 +7,7 @@
     "license": "MIT",
     "require": {
         "php": ">=5.3.3",
-        "mischiefcollective/colorjizz": "dev-master"
+        "mischiefcollective/colorjizz": "^1.0"
     },
     "require-dev": {
         "instaclick/php-code-sniffer": "dev-master",
@@ -17,5 +17,11 @@
         "psr-4": {
             "ColorContrast\\": "src/"
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/mikeemoo/ColorJizz-PHP"
+        }
+    ]
 }

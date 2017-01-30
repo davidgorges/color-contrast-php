@@ -10,14 +10,6 @@ Using composer:
 composer require davidgorges/color-contrast
 ```
 
-**Note** that this package depends on development branches of other projects, so your [minimum stability][1]
-must be `dev` in `composer.json` otherwise you'll get a dependency resolution conflict.
-
-```json
-"minimum-stability": "dev",
-"prefer-stable" : true
-```
-
 ## Usage
 ````php
     use ColorContrast\ColorContrast;
