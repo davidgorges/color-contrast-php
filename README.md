@@ -11,8 +11,6 @@ Small library to find valid color combinations for a given contrast threshold. T
 
 ------
 
-[![Build Status](https://travis-ci.org/davidgorges/color-contrast-php.svg?branch=master)](https://travis-ci.org/davidgorges/color-contrast-php)
-
 ## Install
 
 Using composer:
