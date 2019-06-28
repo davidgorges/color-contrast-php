@@ -11,5 +11,12 @@
 
 declare(strict_types = 1);
 
-// Setup autoloading
-require __DIR__.'/../vendor/autoload.php';
+namespace ColorContrast\Exception;
+
+/**
+ * The InvalidColorException is thrown when ColorContrast could not detect a color
+ * from a parameter, e.g. 'red'.
+ */
+class InvalidColorException extends \Exception
+{
+}

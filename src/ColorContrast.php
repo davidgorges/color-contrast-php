@@ -1,33 +1,42 @@
 <?php
 
+/*
+ * This file is part of the ColorContrast package.
+ *
+ * (c) David Gorges <gorges@werbelift.de>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types = 1);
+
 namespace ColorContrast;
 
 use ColorContrast\ContrastAlgorithm\ContrastAlgorithmInterface;
 use ColorContrast\ContrastAlgorithm\LuminosityContrast;
+use ColorContrast\Exception\InvalidColorException;
 use MischiefCollective\ColorJizz\ColorJizz;
 use MischiefCollective\ColorJizz\Exceptions\InvalidArgumentException;
 use MischiefCollective\ColorJizz\Formats\Hex;
 use MischiefCollective\ColorJizz\Formats\RGB;
 
-/**
- * The ColorContrast class
- */
 class ColorContrast
 {
     const LIGHT = 'light';
     const DARK = 'dark';
     /**
-     * @var ColorJizz[] $colors
+     * @var ColorJizz[]
      */
-    private $colors = array();
+    private $colors = [];
 
     /**
-     * @var ContrastAlgorithmInterface $algorithm
+     * @var ContrastAlgorithmInterface
      */
     private $algorithm;
 
     /**
-     * minimum color contrast based on the WACG 2.0 guidelines
+     * minimum color contrast based on the WACG 2.0 guidelines.
      */
     const MIN_CONTRAST_AA = 4.5;
 
@@ -35,21 +44,23 @@ class ColorContrast
     const MIN_CONTRAST_AA_LARGE = 3;
     const MIN_CONTRAST_AAA_LARGE = 4.5;
 
-    function __construct()
+    public function __construct()
     {
         $this->algorithm = new LuminosityContrast();
     }
 
     /**
-     * add
+     * add multiple colors at once,.
      *
      * @param mixed $colors
+     *
+     * @throws InvalidColorException
      */
-    public function addColors($colors)
+    public function addColors($colors): void
     {
-        $args = func_get_args();
+        $args = \func_get_args();
         foreach ($args as $arg) {
-            if (is_array($arg)) {
+            if (\is_array($arg)) {
                 foreach ($arg as $color) {
                     $this->addColor($color);
                 }
@@ -60,17 +71,19 @@ class ColorContrast
     }
 
     /**
-     * resets the colors
+     * resets the colors.
      */
-    public function clear()
+    public function clear(): void
     {
-        $this->colors = array();
+        $this->colors = [];
     }
 
     /**
-     * @param $color
+     * @param string|ColorJizz|int $color
+     *
+     * @throws InvalidColorException
      */
-    public function addColor($color)
+    public function addColor($color): void
     {
         $parsedColor = $this->parseColor($color);
         $this->colors[] = $parsedColor;
@@ -80,14 +93,13 @@ class ColorContrast
      * @param float $minContrast
      *
      * @return ColorCombination[]
-     *
      */
     public function getCombinations($minContrast = 0.0)
     {
-        $combinations = array();
+        $combinations = [];
         foreach ($this->colors as $backgroundColor) {
             foreach ($this->colors as $foregroundColor) {
-                if ($backgroundColor == $foregroundColor) {
+                if ($backgroundColor === $foregroundColor) {
                     continue;
                 }
 
@@ -104,17 +116,17 @@ class ColorContrast
     /**
      * @param ContrastAlgorithmInterface $algorithm
      */
-    public function setAlgorithm(ContrastAlgorithmInterface $algorithm)
+    public function setAlgorithm(ContrastAlgorithmInterface $algorithm): void
     {
         $this->algorithm = $algorithm;
     }
 
     /**
-     * @param $color
+     * @param mixed $color
      *
-     * @return Hex
+     * @return ColorJizz
+     *
      * @throws InvalidColorException
-     * @throws InvalidArgumentException
      */
     private function parseColor($color)
     {
@@ -122,19 +134,18 @@ class ColorContrast
             if ($color instanceof ColorJizz) {
                 return $color;
             }
-            if (is_string($color)) {
-                if (substr($color, 0, 1) == '#') {
+            if (\is_int($color)) {
+                return new Hex($color);
+            }
+            if (\is_string($color) && \strlen($color) > 4) {
+                if (0 === strpos($color, '#')) {
                     return Hex::fromString(substr($color, 1));
                 }
 
-                if (strlen($color) == 6) {
+                if (6 === \strlen($color)) {
                     return Hex::fromString($color);
                 }
             }
-            if (is_integer($color)) {
-                return new Hex($color);
-            }
-
         } catch (InvalidArgumentException $e) {
             throw new InvalidColorException('Could not parse color. Currently supported formats are 0x000000, #ff0000 and ff0000', 0, $e);
         }
@@ -143,10 +154,13 @@ class ColorContrast
 
     /**
      * Tries to detect what font-color you should use as complimentary color.
-     * e.g. complimentaryTheme('#ffffff') would return ColorContrast::DARK
-     * @param $color
+     * e.g. complimentaryTheme('#ffffff') would return ColorContrast::DARK.
+     *
+     * @param ColorJizz|string|int $color
      *
      * @return string ColorContrast::LIGHT or ColorContrast::DARK
+     *
+     * @throws InvalidColorException
      */
     public function complimentaryTheme($color)
     {
@@ -154,9 +168,9 @@ class ColorContrast
         $yiq = $this->calculateYIQValue($parsedColor->toRGB());
         if ($yiq > 128) {
             return self::DARK;
-        } else {
-            return self::LIGHT;
         }
+
+        return self::LIGHT;
     }
 
     /**
@@ -169,6 +183,7 @@ class ColorContrast
     private function calculateYIQValue(RGB $color)
     {
         $yiq = (($color->getRed() * 299) + ($color->getGreen() * 587) + ($color->getBlue() * 114)) / 1000;
+
         return $yiq;
     }
 }

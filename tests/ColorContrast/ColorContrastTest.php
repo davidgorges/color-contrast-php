@@ -1,12 +1,26 @@
 <?php
-use ColorContrast\ColorContrast;
 
-class ColorContrastTest extends PHPUnit_Framework_TestCase
+/*
+ * This file is part of the ColorContrast package.
+ *
+ * (c) David Gorges <gorges@werbelift.de>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types = 1);
+
+use ColorContrast\ColorContrast;
+use ColorContrast\Exception\InvalidColorException;
+use PHPUnit\Framework\TestCase;
+
+class ColorContrastTest extends TestCase
 {
     /**
-     * Test different ways to add colors
+     * Test different ways to add colors.
      */
-    public function testColorAdditionWithMultipleArguments()
+    public function testColorAdditionWithMultipleArguments(): void
     {
         $contrast = new ColorContrast();
         $contrast->addColors('#ff9900', 0x223399, 0x0, '#ffff00');
@@ -17,7 +31,7 @@ class ColorContrastTest extends PHPUnit_Framework_TestCase
         $combinations = $contrast->getCombinations(0.0);
         $this->assertCount(0, $combinations);
 
-        $colors = array('#ff0000', '#000000', '#ffffff');
+        $colors = ['#ff0000', '#000000', '#ffffff'];
         $contrast->addColors($colors);
         $combinations = $contrast->getCombinations(0.0);
         $this->assertCount(6, $combinations);
@@ -25,19 +39,17 @@ class ColorContrastTest extends PHPUnit_Framework_TestCase
         $combinations = $contrast->getCombinations(ColorContrast::MIN_CONTRAST_AA);
     }
 
-    /**
-     * @expectedException ColorContrast\InvalidColorException
-     */
-    public function testColorAdditionWithInvalidColor()
+    public function testColorAdditionWithInvalidColor(): void
     {
         $contrast = new ColorContrast();
+        $this->expectException(InvalidColorException::class);
         $contrast->addColors('red');
     }
 
     /**
      * functional.
      */
-    public function testLightOrDark()
+    public function testLightOrDark(): void
     {
         $contrast = new ColorContrast();
         $complimentaryColor = $contrast->complimentaryTheme('ffffff');

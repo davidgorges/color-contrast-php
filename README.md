@@ -1,6 +1,16 @@
 # ColorContrast
 Small library to find valid color combinations for a given contrast threshold. The contrast calculation algorithm is based on the WCAG 2.0.
 
+<p align="center">
+	<a href="https://travis-ci.org/davidgorges/color-contrast-php"><img src="https://travis-ci.org/davidgorges/color-contrast-php.svg" alt="Build Status"></a>
+	<a href="https://packagist.org/packages/davidgorges/color-contrast-php"><img src="https://poser.pugx.org/davidgorges/color-contrast-php/v/stable" alt="Latest Stable Version"></a>
+	<a href="https://packagist.org/packages/davidgorges/color-contrast-php/stats"><img src="https://poser.pugx.org/davidgorges/color-contrast-php/downloads" alt="Total Downloads"></a>
+	<a href="https://choosealicense.com/licenses/mit/"><img src="https://poser.pugx.org/davidgorges/color-contrast-php/license" alt="License"></a>
+	<a href="https://github.com/davidgorges/color-contrast-php"><img src="https://img.shields.io/badge/PHPStan-enabled-brightgreen.svg?style=flat" alt="PHPStan Enabled"></a>
+</p>
+
+------
+
 [![Build Status](https://travis-ci.org/davidgorges/color-contrast-php.svg?branch=master)](https://travis-ci.org/davidgorges/color-contrast-php)
 
 ## Install
@@ -34,22 +44,23 @@ this would output:
 
 ### Dark or Light Complimentary Color
 
-````
+````php
     $contrast = new ColorContrast();
-    $complimentary = $contrast->complimentaryTheme('#ffffff'); // returns ColorContrast::DARK to indicate you should use a dark color on this background
     
-    if($complimentary == ColorContrast::LIGHT) 
-    {
+    // imagine having a red background and you need to know if its better
+    // to display a white or black text on top if it
+    $complimentary = $contrast->complimentaryTheme('#d80000'); // returns ColorContrast::DARK to indicate you should use a dark color on this background
+    
+    if($complimentary == ColorContrast::LIGHT) {
         // Use a light font
-    } elseif($complimentary == ColorContrast::DARK) 
-    {
+    } else {
         // use a dark font
     }
 ````
 ## Thanks
 
 * [Calculating Color Contrast with PHP](http://www.splitbrain.org/blog/2008-09/18-calculating_color_contrast_with_php) by Andreas Gohr
-* [jxnblk/colorable](https://github.com/jxnblk/colorable) JavaScript Library that inspired ColorContrast heavily
+* [jxnblk/colorable](https://github.com/jxnblk/colorable) JavaScript Library that inspired ColorContrast 
 
 ## License
 The MIT License (MIT)

@@ -1,5 +1,16 @@
 <?php
 
+/*
+ * This file is part of the ColorContrast package.
+ *
+ * (c) David Gorges <gorges@werbelift.de>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types = 1);
+
 namespace ColorContrast\ContrastAlgorithm;
 
 use MischiefCollective\ColorJizz\ColorJizz;
@@ -7,9 +18,9 @@ use MischiefCollective\ColorJizz\Formats\RGB;
 
 /**
  * The LuminosityContrast calculates the contrast based on the proposed
- * algorithm from the WCAG 2.0 guides (ITU-R Recommendation BT. 709)
+ * algorithm from the WCAG 2.0 guides (ITU-R Recommendation BT. 709).
  *
- * @link http://www.w3.org/TR/WCAG20/#contrast-ratiodef
+ * @see http://www.w3.org/TR/WCAG20/#contrast-ratiodef
  */
 class LuminosityContrast implements ContrastAlgorithmInterface
 {
@@ -23,8 +34,8 @@ class LuminosityContrast implements ContrastAlgorithmInterface
      */
     public function calculate(ColorJizz $foreground, ColorJizz $background)
     {
-        $fgLuma  = $this->relativeLuminosity($foreground->toRGB());
-        $bgLuma  = $this->relativeLuminosity($background->toRGB());
+        $fgLuma = $this->relativeLuminosity($foreground->toRGB());
+        $bgLuma = $this->relativeLuminosity($background->toRGB());
 
         if ($fgLuma > $bgLuma) {
             return ($fgLuma + 0.05) / ($bgLuma + 0.05);

@@ -1,17 +1,18 @@
 {
-    "name": "davidgorges/color-contrast",
+    "name": "davidgorges/color-contrast-php",
     "description": "A tiny library to find color combinations with a contrast threshold",
     "type": "library",
     "keywords": ["color", "contrast", "library", "WCAG 2.0", "usability"],
     "homepage": "http://www.davidgorges.de",
     "license": "MIT",
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=5.4",
         "mischiefcollective/colorjizz": "^1.0"
     },
     "require-dev": {
-        "instaclick/php-code-sniffer": "dev-master",
-        "phpunit/PHPUnit": "3.7.*"
+        "phpunit/phpunit": "^8.2",
+        "friendsofphp/php-cs-fixer": "^2.15",
+        "phpstan/phpstan": "^0.11.8"
     },
     "autoload": {
         "psr-4": {

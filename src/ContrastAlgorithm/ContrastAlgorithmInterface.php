@@ -1,11 +1,22 @@
 <?php
 
+/*
+ * This file is part of the ColorContrast package.
+ *
+ * (c) David Gorges <gorges@werbelift.de>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types = 1);
+
 namespace ColorContrast\ContrastAlgorithm;
 
 use MischiefCollective\ColorJizz\ColorJizz;
 
 /**
- * The ContrastInterface class
+ * The ContrastInterface class.
  */
 interface ContrastAlgorithmInterface
 {
