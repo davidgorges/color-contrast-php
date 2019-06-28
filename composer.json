@@ -18,11 +18,5 @@
         "psr-4": {
             "ColorContrast\\": "src/"
         }
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/mikeemoo/ColorJizz-PHP"
-        }
-    ]
+    }
 }
