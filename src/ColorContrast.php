@@ -158,15 +158,17 @@ class ColorContrast
      *
      * @param ColorJizz|string|int $color
      *
+     * @param int $threshold
+     *
      * @return string ColorContrast::LIGHT or ColorContrast::DARK
      *
      * @throws InvalidColorException
      */
-    public function complimentaryTheme($color)
+    public function complimentaryTheme($color, $threshold = 128)
     {
         $parsedColor = $this->parseColor($color);
         $yiq = $this->calculateYIQValue($parsedColor->toRGB());
-        if ($yiq > 128) {
+        if ($yiq > $threshold) {
             return self::DARK;
         }
 
