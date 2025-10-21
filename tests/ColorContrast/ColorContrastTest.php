@@ -122,19 +122,39 @@ final class ColorContrastTest extends TestCase
         $contrast = new ColorContrast();
 
         $complimentaryColor = $contrast->complimentaryTheme('ffffff');
-        $this->assertSame(ColorContrast::DARK, $complimentaryColor, 'The algorithm should recommend a dark complimentary color for ffffff');
+        $this->assertSame(
+            ColorContrast::DARK,
+            $complimentaryColor,
+            'The algorithm should recommend a dark complimentary color for ffffff'
+        );
 
         $complimentaryColor = $contrast->complimentaryTheme('ef4444');
-        $this->assertSame(ColorContrast::LIGHT, $complimentaryColor, 'The algorithm should recommend a light complimentary color for ef4444');
+        $this->assertSame(
+            ColorContrast::LIGHT,
+            $complimentaryColor,
+            'The algorithm should recommend a light complimentary color for ef4444'
+        );
 
         $complimentaryColor = $contrast->complimentaryTheme('ffcc00');
-        $this->assertSame(ColorContrast::DARK, $complimentaryColor, 'The algorithm should recommend a dark complimentary color for ffcc00');
+        $this->assertSame(
+            ColorContrast::DARK,
+            $complimentaryColor,
+            'The algorithm should recommend a dark complimentary color for ffcc00'
+        );
 
         $complimentaryColor = $contrast->complimentaryTheme('ccff00');
-        $this->assertSame(ColorContrast::DARK, $complimentaryColor, 'The algorithm should recommend a dark complimentary color for ccff00');
+        $this->assertSame(
+            ColorContrast::DARK,
+            $complimentaryColor,
+            'The algorithm should recommend a dark complimentary color for ccff00'
+        );
 
         $complimentaryColor = $contrast->complimentaryTheme('00ccff');
-        $this->assertSame(ColorContrast::DARK, $complimentaryColor, 'The algorithm should recommend a dark complimentary color for 00ccff');
+        $this->assertSame(
+            ColorContrast::DARK,
+            $complimentaryColor,
+            'The algorithm should recommend a dark complimentary color for 00ccff'
+        );
     }
 
     public function testComplimentaryThemeWithHexInteger(): void

@@ -33,9 +33,18 @@ final readonly class Color
         private int $green,
         private int $blue
     ) {
-        if ($red < 0 || $red > 255 || $green < 0 || $green > 255 || $blue < 0 || $blue > 255) {
+        if (
+            $red < 0 || $red > 255 ||
+            $green < 0 || $green > 255 ||
+            $blue < 0 || $blue > 255
+        ) {
             throw new InvalidColorException(
-                sprintf('RGB values must be between 0 and 255. Got: R=%d, G=%d, B=%d', $red, $green, $blue)
+                sprintf(
+                    'RGB values must be between 0 and 255. Got: R=%d, G=%d, B=%d',
+                    $red,
+                    $green,
+                    $blue
+                )
             );
         }
     }
@@ -67,7 +76,7 @@ final readonly class Color
 
         if (strlen($hex) === 3) {
             // Convert short format (e.g., 'F00') to long format ('FF0000')
-            $hex = $hex[0].$hex[0].$hex[1].$hex[1].$hex[2].$hex[2];
+            $hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
         }
 
         if (strlen($hex) !== 6) {
@@ -119,6 +128,6 @@ final readonly class Color
     {
         $hex = sprintf('%06X', $this->toHex());
 
-        return $includeHash ? '#'.$hex : $hex;
+        return $includeHash ? '#' . $hex : $hex;
     }
 }

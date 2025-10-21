@@ -100,7 +100,11 @@ final class ColorContrast
 
                 $contrast = $this->algorithm->calculate($foregroundColor, $backgroundColor);
                 if ($contrast > $minContrast) {
-                    $combinations[] = new ColorCombination($foregroundColor, $backgroundColor, $contrast);
+                    $combinations[] = new ColorCombination(
+                        $foregroundColor,
+                        $backgroundColor,
+                        $contrast
+                    );
                 }
             }
         }
@@ -144,7 +148,10 @@ final class ColorContrast
         }
 
         throw new InvalidColorException(
-            sprintf('Could not parse color. Supported formats: 0xFF0000, #FF0000, FF0000, #F00, F00. Got: %s', (string) $color)
+            sprintf(
+                'Could not parse color. Supported formats: 0xFF0000, #FF0000, FF0000, #F00, F00. Got: %s',
+                (string) $color
+            )
         );
     }
 
@@ -178,6 +185,10 @@ final class ColorContrast
      */
     private function calculateYIQValue(Color $color): float
     {
-        return (($color->getRed() * 299) + ($color->getGreen() * 587) + ($color->getBlue() * 114)) / 1000;
+        return (
+            ($color->getRed() * 299) +
+            ($color->getGreen() * 587) +
+            ($color->getBlue() * 114)
+        ) / 1000;
     }
 }
