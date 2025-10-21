@@ -13,61 +13,30 @@ declare(strict_types=1);
 
 namespace ColorContrast;
 
-use MischiefCollective\ColorJizz\ColorJizz;
-
 /**
  * Data object that represents a combination between a foreground and a background color
  * and their contrast value.
  */
-class ColorCombination
+final readonly class ColorCombination
 {
-    /**
-     * @var ColorJizz
-     */
-    private $foreground;
-
-    /**
-     * @var ColorJizz
-     */
-    private $background;
-
-    /**
-     * @var float
-     */
-    private $contrast;
-
-    /**
-     * @param ColorJizz $foreground
-     * @param ColorJizz $background
-     * @param float     $contrast
-     */
-    public function __construct($foreground, $background, $contrast)
-    {
-        $this->foreground = $foreground;
-        $this->background = $background;
-        $this->contrast = $contrast;
+    public function __construct(
+        private Color $foreground,
+        private Color $background,
+        private float $contrast
+    ) {
     }
 
-    /**
-     * @return ColorJizz
-     */
-    public function getForeground()
+    public function getForeground(): Color
     {
         return $this->foreground;
     }
 
-    /**
-     * @return ColorJizz
-     */
-    public function getBackground()
+    public function getBackground(): Color
     {
         return $this->background;
     }
 
-    /**
-     * @return float
-     */
-    public function getContrast()
+    public function getContrast(): float
     {
         return $this->contrast;
     }

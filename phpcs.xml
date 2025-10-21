@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<ruleset name="ColorContrast">
+    <description>The coding standard for ColorContrast package.</description>
+
+    <arg name="basepath" value="."/>
+    <arg name="colors"/>
+    <arg name="parallel" value="80"/>
+    <arg value="np"/>
+
+    <!-- Show progress -->
+    <arg value="p"/>
+
+    <!-- Paths to check -->
+    <file>src</file>
+    <file>tests</file>
+
+    <!-- Include the Symfony coding standard -->
+    <rule ref="PSR12"/>
+
+    <!-- Additional Symfony-style rules -->
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="120"/>
+            <property name="absoluteLineLimit" value="120"/>
+        </properties>
+    </rule>
+    <rule ref="Generic.Formatting.SpaceAfterCast"/>
+    <rule ref="Generic.Formatting.SpaceAfterNot"/>
+    <rule ref="Generic.PHP.ForbiddenFunctions">
+        <properties>
+            <property name="forbiddenFunctions" type="array">
+                <element key="var_dump" value="null"/>
+                <element key="dd" value="null"/>
+                <element key="dump" value="null"/>
+            </property>
+        </properties>
+    </rule>
+
+    <!-- Slevomat Coding Standard rules if available -->
+    <config name="installed_paths" value="../../slevomat/coding-standard"/>
+
+    <!-- Exclude patterns -->
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/tests/Bootstrap.php</exclude-pattern>
+</ruleset>

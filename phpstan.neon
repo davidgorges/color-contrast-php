@@ -1,0 +1,28 @@
+parameters:
+    level: max
+    paths:
+        - src
+        - tests
+
+    # Strict rules
+    strictRules:
+        allRules: true
+
+    # Check missing type hints
+    checkMissingIterableValueType: true
+    checkGenericClassInNonGenericObjectType: true
+    checkMissingCallableSignature: true
+
+    # Additional checks
+    checkAlwaysTrueCheckTypeFunctionCall: true
+    checkAlwaysTrueInstanceof: true
+    checkAlwaysTrueStrictComparison: true
+    checkExplicitMixedMissingReturn: true
+    checkFunctionNameCase: true
+    checkInternalClassCaseSensitivity: true
+    reportMaybesInMethodSignatures: true
+    reportStaticMethodSignatures: true
+
+    # Ignore patterns
+    excludePaths:
+        - tests/Bootstrap.php
