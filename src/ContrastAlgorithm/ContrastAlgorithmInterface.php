@@ -9,22 +9,24 @@
  * file that was distributed with this source code.
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace ColorContrast\ContrastAlgorithm;
 
-use MischiefCollective\ColorJizz\ColorJizz;
+use ColorContrast\Color;
 
 /**
- * The ContrastInterface class.
+ * Interface for contrast calculation algorithms.
  */
 interface ContrastAlgorithmInterface
 {
     /**
-     * @param ColorJizz $foreground
-     * @param ColorJizz $background
+     * Calculates the contrast ratio between two colors.
      *
-     * @return mixed
+     * @param Color $foreground The foreground color
+     * @param Color $background The background color
+     *
+     * @return float The contrast ratio
      */
-    public function calculate(ColorJizz $foreground, ColorJizz $background);
+    public function calculate(Color $foreground, Color $background): float;
 }

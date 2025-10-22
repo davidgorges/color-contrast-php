@@ -9,12 +9,11 @@
  * file that was distributed with this source code.
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace ColorContrast\ContrastAlgorithm;
 
-use MischiefCollective\ColorJizz\ColorJizz;
-use MischiefCollective\ColorJizz\Formats\RGB;
+use ColorContrast\Color;
 
 /**
  * The LuminosityContrast calculates the contrast based on the proposed
@@ -22,39 +21,30 @@ use MischiefCollective\ColorJizz\Formats\RGB;
  *
  * @see http://www.w3.org/TR/WCAG20/#contrast-ratiodef
  */
-class LuminosityContrast implements ContrastAlgorithmInterface
+final class LuminosityContrast implements ContrastAlgorithmInterface
 {
     /**
-     * returns the contrast ratio between foreground and background color.
-     *
-     * @param ColorJizz $foreground
-     * @param ColorJizz $background
-     *
-     * @return float
+     * Returns the contrast ratio between foreground and background color.
      */
-    public function calculate(ColorJizz $foreground, ColorJizz $background)
+    public function calculate(Color $foreground, Color $background): float
     {
-        $fgLuma = $this->relativeLuminosity($foreground->toRGB());
-        $bgLuma = $this->relativeLuminosity($background->toRGB());
+        $fgLuma = $this->relativeLuminosity($foreground);
+        $bgLuma = $this->relativeLuminosity($background);
 
         if ($fgLuma > $bgLuma) {
             return ($fgLuma + 0.05) / ($bgLuma + 0.05);
-        } else {
-            return ($bgLuma + 0.05) / ($fgLuma + 0.05);
         }
+
+        return ($bgLuma + 0.05) / ($fgLuma + 0.05);
     }
 
     /**
-     * @param RGB $color
-     *
-     * @return float
+     * Calculates the relative luminosity of a color.
      */
-    private function relativeLuminosity(RGB $color)
+    private function relativeLuminosity(Color $color): float
     {
-        $luminosity = 0.2126 * pow($color->getRed() / 255, 2.2) +
-            0.7152 * pow($color->getGreen() / 255, 2.2) +
-            0.0722 * pow($color->getBlue() / 255, 2.2);
-
-        return $luminosity;
+        return 0.2126 * ($color->getRed() / 255) ** 2.2
+            + 0.7152 * ($color->getGreen() / 255) ** 2.2
+            + 0.0722 * ($color->getBlue() / 255) ** 2.2;
     }
 }
