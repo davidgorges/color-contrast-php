@@ -19,7 +19,7 @@ use ColorContrast\Exception\InvalidColorException;
  * Represents a color with RGB values.
  * Supports parsing from hex strings and integers.
  */
-final readonly class Color
+final class Color
 {
     /**
      * @param int $red   Red component (0-255)
@@ -29,9 +29,9 @@ final readonly class Color
      * @throws InvalidColorException
      */
     public function __construct(
-        private int $red,
-        private int $green,
-        private int $blue
+        private readonly int $red,
+        private readonly int $green,
+        private readonly int $blue
     ) {
         if (
             $red < 0 || $red > 255 ||
@@ -91,7 +91,7 @@ final readonly class Color
             );
         }
 
-        $value = hexdec($hex);
+        $value = (int) hexdec($hex);
 
         return self::fromHex($value);
     }

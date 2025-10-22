@@ -26,8 +26,8 @@ final class ColorContrast
      * Minimum color contrast based on the WCAG 2.0 guidelines.
      */
     public const MIN_CONTRAST_AA = 4.5;
-    public const MIN_CONTRAST_AAA = 7;
-    public const MIN_CONTRAST_AA_LARGE = 3;
+    public const MIN_CONTRAST_AAA = 7.0;
+    public const MIN_CONTRAST_AA_LARGE = 3.0;
     public const MIN_CONTRAST_AAA_LARGE = 4.5;
 
     /**

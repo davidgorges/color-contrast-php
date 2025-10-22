@@ -17,12 +17,12 @@ namespace ColorContrast;
  * Data object that represents a combination between a foreground and a background color
  * and their contrast value.
  */
-final readonly class ColorCombination
+final class ColorCombination
 {
     public function __construct(
-        private Color $foreground,
-        private Color $background,
-        private float $contrast
+        private readonly Color $foreground,
+        private readonly Color $background,
+        private readonly float $contrast
     ) {
     }
 
